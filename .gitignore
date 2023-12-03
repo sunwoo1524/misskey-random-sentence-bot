@@ -1,0 +1,4 @@
+venv/
+setting.py
+google_api.json
+__pycache__/
