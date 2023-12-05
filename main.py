@@ -17,7 +17,10 @@ def writeRandomSentenceNote():
     sentences = work_sheet.col_values(1)
 
     # choice random sentence
-    sentence = random.choice(sentences)
+    sentence: str = random.choice(sentences)
+
+    # change newline-character to be valid
+    sentence = sentence.replace("\\n", "\n")
 
     # write note
     random_sentence_note = misskey.notes_create(text=sentence)
