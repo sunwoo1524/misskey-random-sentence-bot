@@ -13,10 +13,10 @@ pip install -r requirements.txt
 4. change setting
 ```
 # copy example setting file
-cp setting_example.py setting.py
+cp src/setting_example.py src/setting.py
 
 # edit setting file
-vim setting.py
+vim src/setting.py
 ```
 - `instance_address`: address of misskey instance that your bot will run
 - `access_token`: API access token of your bot account
