@@ -1,23 +1,22 @@
 from misskey import Misskey
-from setting import instance_address, access_token, google_api_json, spread_sheet_url
-import gspread
 import random
+
+from src.setting import instance_address, access_token
+from src.choose_sentence import chooseSentence
+from src.generate_sentence import generateSentence
 
 # authentication to misskey
 misskey = Misskey(address=instance_address, i=access_token)
 
-# authentication to google spread sheet
-gc = gspread.service_account(google_api_json)
-
 
 def writeRandomSentenceNote():
-    # get all sentences
-    sheet = gc.open_by_url(spread_sheet_url)
-    work_sheet = sheet.get_worksheet(0)
-    sentences = work_sheet.col_values(1)
+    choice_methods = [
+        chooseSentence,
+        generateSentence
+    ]
 
-    # choice random sentence
-    sentence: str = random.choice(sentences)
+    # choose method and get sentence
+    sentence: str = random.choice(choice_methods)()
 
     # change newline-character to be valid
     sentence = sentence.replace("\\n", "\n")
